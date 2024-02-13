@@ -270,16 +270,64 @@
                 </div>
                 <br>
                 <br>
-                <h3>Horário de funcionamento</h3>
-                <blockquote>
-                  <p>Seg: Fechado</p>
-                  <p>Ter: 11:00 às 14:00 e 17:00 às 00:00</p>
-                  <p>Qua: 11:00 às 14:00 e 17:00 às 00:00</p>
-                  <p>Qui: 11:00 às 14:00 e 17:00 às 00:00</p>
-                  <p>Sex: 11:00 às 14:00 e 17:00 às 02:00</p>
-                  <p>Sab: 11:00às 02:00</p>
-                  <p>Dom: 11:00às 02:00</p>
-                </blockquote>
+                <div class="box-time">
+                  <h4 class="title-time fechado" id="status-horario">Fechado agora</h4>
+                  <div class="text-time">
+                      <blockquote>
+                          <p>Segunda Fechado</p>
+                          <p>Terça a Quinta: das 11:00 às 14h e 17:00 às 00:00</p>
+                          <p>Sexta: das 11:00 às 14h e 17:00 às 02:00</p>
+                          <p>Sábado e Domingo: das 11:00 às 02:00</p>
+                      </blockquote>
+                  </div>
+              </div>
+              
+              <script>
+                  // Função para verificar se o restaurante está aberto com base no horário atual
+                  const verificarHorario = () => {
+                      const agora = new Date();
+                      const diaSemana = agora.getDay();
+                      const hora = agora.getHours();
+                      const minutos = agora.getMinutes();
+              
+                      let status;
+              
+                      switch (diaSemana) {
+                          case 0: // Domingo
+                          case 6: // Sábado
+                              status = (hora >= 11 || (hora === 11 && minutos >= 0)) && hora < 2 ? "Aberto" : "Fechado";
+                              break;
+                          case 1: // Segunda
+                              status = "Fechado";
+                              break;
+                          case 2: // Terça
+                          case 3: // Quarta
+                          case 4: // Quinta
+                            status = (hora >= 11 && hora < 14) || (hora >= 17 || (hora === 0 && minutos === 0)) ? "Aberto" : "Fechado";
+                              break;
+                          case 5: // Sexta
+                            status = (hora >= 11 && hora < 14) || (hora >= 17 || (hora === 2 && minutos === 0)) ? "Aberto" : "Fechado";
+                      }
+              
+                      document.getElementById("status-horario").innerText = status == "Aberto" ? "Aberto agora" : "Fechado agora";
+
+                          // Aplicar classe CSS correspondente
+                        document.getElementById("status-horario").classList.remove("aberto", "fechar");
+                        if (status === "Aberto") {
+                            document.getElementById("status-horario").classList.add("aberto");
+                        } else {
+                            document.getElementById("status-horario").classList.add("fechar");
+                        }
+                  };
+              
+                  // Chama a função inicialmente ao carregar a página
+                  verificarHorario();
+              
+                  // Atualiza a mensagem a cada minuto
+                  setInterval(verificarHorario, 60000); // Atualiza a cada 60 segundos (1 minuto)
+              </script>
+
+
               </div>
             </div>
           </article>
