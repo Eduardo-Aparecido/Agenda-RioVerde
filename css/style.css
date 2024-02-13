@@ -177,6 +177,30 @@ article .entry-content ol {float: left;text-align: justify;margin: 10px 50px;lis
 
 .comments-are textarea {height:170px;}
 
+
+/* ---------------------------------------------------------------------------- */
+/* ----------------------------Horário de funcionamento------------------------ */
+/* ---------------------------------------------------------------------------- */
+.box-time {
+    padding: 2rem;
+    width: auto;
+    justify-content: center;
+    background-color: #222;
+    border-radius: 25px 25px 25px;
+    line-height: normal;
+}
+.title-time {
+    font-family: 'mulish';
+}
+.aberto {
+    color: rgb(57, 221, 39);
+}
+
+.fechar {
+    color: red;
+}
+
+
 /* ---------------------------------------------------------------------------- */
 /* -------------------------------------Footer--------------------------------- */
 /* ---------------------------------------------------------------------------- */
